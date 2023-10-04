@@ -120,7 +120,7 @@ function criaCano(){
                 const cabecaDoFlappy = globais.FlapyBird.y
                 const peDoFlappy = globais.FlapyBird.y + globais.FlapyBird.altura
                 if(globais.FlapyBird.largura >= par.x){
-                    ponto.play()
+                    ponto.play()    
                     if(cabecaDoFlappy <= par.canoCeu.y){
                         hit.play()
                         estaMorto = true
@@ -309,10 +309,10 @@ function criaFlappybird(){
     }
     return FlapyBird
 }
+let best = 0
 function criaPlacar(){
-    let best = 0
     let placar = {
-        pontuacao: 0,   
+        pontuacao: 0,
         desenha(){           
             if(!estaMorto){
                 contexto.font = '35px "VT323"'
