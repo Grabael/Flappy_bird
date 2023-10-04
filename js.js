@@ -309,13 +309,11 @@ function criaFlappybird(){
     }
     return FlapyBird
 }
-let best = 0
 function criaPlacar(){
+    let best = 0
     let placar = {
-        pontuacao: 0,
-        
-        desenha(){
-            
+        pontuacao: 0,   
+        desenha(){           
             if(!estaMorto){
                 contexto.font = '35px "VT323"'
                 contexto.textAlign = 'right'
@@ -344,8 +342,7 @@ function criaPlacar(){
             if(placar.pontuacao > 20){
                 MedalhaOuro.desenha()
             }
-        }
-            
+        }           
     },
         atualiza(){
             const intervaloDeFrames = 20
@@ -356,7 +353,7 @@ function criaPlacar(){
             let pontoatual  = placar.pontuacao
             if(pontoatual > best){
                 best = pontoatual
-            }
+            } 
         }
 
     }
@@ -455,17 +452,19 @@ function mudaTela(novaTela){
             tapaBuraco.largura, tapaBuraco.altura,
         )
         if(BocaNoCano){
-            contexto.font = '30px "VT323"'
-            contexto.textAlign = 'center'
-            contexto.fillStyle = 'white'
+            
+            contexto.font = '30px "VT323"',
+            contexto.textAlign = 'center',
+            contexto.fillStyle = 'white',
             contexto.fillText(`foi de boca no cano kkkj`, canvas.width - 160, 30)
-        }else{
-        contexto.font = '30px "VT323"'
-        contexto.textAlign = 'center'
-        contexto.fillStyle = 'white'
-        contexto.fillText(`esqueceu de voar kkkj`, canvas.width - 160, 30)
+            }else{
+ 
+                contexto.font = '30px "VT323"',
+                contexto.textAlign = 'center',
+                contexto.fillStyle = 'white',
+                contexto.fillText(`esqueceu de voar kkkj`, canvas.width - 160, 30)
+            }
         }
-    }
 }
 
 const tela = {
@@ -540,12 +539,20 @@ function loop (){
     frames = frames + 1
     requestAnimationFrame(loop)
 }
-
-window.addEventListener('keypress', function() {
-    if (telaAtiva.click)
+let mobile = false
+if(navigator.userAgent.indexOf("Android") != -1 || navigator.userAgent.indexOf("like Mac") != -1) mobile = true
+console.log(mobile)
+if(mobile){
+    window.addEventListener('touchstart', function() {
+        if (telaAtiva.click)
         telaAtiva.click()
-
-})
+    })
+    } else{
+            window.addEventListener('keypress', function() {
+                if (telaAtiva.click)
+                telaAtiva.click()
+            })
+        }
 mudaTela(tela.inicial)
 loop()
 
